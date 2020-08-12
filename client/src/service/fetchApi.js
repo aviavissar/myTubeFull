@@ -1,15 +1,12 @@
 import axios1 from "axios";
 let axios = axios1.default;
 
-const KEY = "AIzaSyBjCR--vSQ75wgxc05OlVZVQP5hsz8Qt0w";
-let token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZThmYjFkMThjNmM0MjM0Yzg4MGMyNyIsImlhdCI6MTU5MjUxNTQwOH0.QKGwL9AFIHZuHUZlpUvw8N4e91geQ3iAwwLlIV8LHok";
 
 
 
 export const fetchYouTube = async (term) => {
   return await fetch(
-    "https://www.googleapis.com/youtube/v3/search?key=AIzaSyBjCR--vSQ75wgxc05OlVZVQP5hsz8Qt0w&part=snippet&maxResults=20"
+    `https://www.googleapis.com/youtube/v3/search?key=${KEY}`
   )
     .then((resp) => resp.json())
     .then((resp) => {
