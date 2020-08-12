@@ -1,0 +1,295 @@
+import React, { useState } from "react";
+import searchYoutube from "youtube-api-v3-search";
+import VideoScreen from "./VideoScreen";
+import styled from "styled-components/macro";
+import Search from "./Search";
+import LogIn from "./LogIn";
+import SignIn from "./SignIn";
+import VideoList from "./VideoList";
+import CategoryCreator from "./CategoryCreator";
+import { BACKGROUND, FOOTER_BACKGROUND, BORDER } from "../styles/colors";
+import { useStore } from "../state/YouTube.store";
+import {
+  login,
+  logout,
+  getCatagories,
+  createCategory,
+} from "../service/fetchApi";
+
+const KEY = "AIzaSyAtRMgT2nlK5BIk1LTyLsrl0qvaVcMmB9E"; //'AIzaSyBjCR--vSQ75wgxc05OlVZVQP5hsz8Qt0w';
+
+const App = () => {
+  const {
+    videos,
+    setvideos,
+    selectedVideo,
+    setCatagories,
+    catagories,
+    setSelectedVideo,
+    selectedCategory,
+    setSelectedCategory,
+    userProfile,
+    isConnected,
+    userToken,
+    setUserToken,
+    setIsConnected,
+    setUserProfile,
+  } = useStore();
+
+  const [errMesg, setErrMesg] = useState("");
+
+  const handleFetch = async (query) => {
+    const options = {
+      q: query,
+      part: "snippet",
+      type: "video",
+      maxResults: 10,
+    };
+    let result = await searchYoutube(KEY, options);
+    // console.log(result)
+    setvideos(result.items);
+  };
+
+  const doLogIn = async (email, password) => {
+    const res = await login(email, password);
+    if (res.data) {
+      const { data, status } = await res;
+      setUserToken(data.token);
+      setUserProfile({ ...data.user });
+      setIsConnected(status === 200);
+      setErrMesg("");
+
+      const arr = await getCatagories(data.token);
+      if (arr.length === 0) {
+        await createCategory(data.token, {
+          cat_name: "You Tube links",
+          videos: [],
+        });
+      }
+
+      let catArr = await getCatagories(data.token);
+      setCatagories(catArr);
+      console.log(catArr);
+      setSelectedCategory(catArr[0]._id);
+      return true;
+    } else {
+      setErrMesg(res.message);
+      return false;
+    }
+  };
+
+  const doLogout = async () => {
+    await logout(userToken);
+    setIsConnected(false);
+    setUserToken(null);
+    setUserProfile(null);
+    setCatagories([]);
+  };
+
+  return (
+    <Page>
+      <Header>
+        <LoginPanel>
+          {isConnected ? null : (
+            <SignIn
+              {...{
+                doLogIn,
+                isConnected: false,
+                title: "Sign In",
+                setUserProfile,
+              }}
+            />
+          )}
+
+          <LogIn
+            {...{
+              userProfile,
+              isConnected,
+              userToken,
+              setUserToken,
+              setIsConnected,
+              setUserProfile,
+              doLogIn,
+              doLogout,
+              errMesg,
+            }}
+          />
+          {isConnected ? (
+            <SignIn
+              {...{
+                doLogIn,
+                isConnected: true,
+                title: "edit profile",
+                userProfile,
+                userToken,
+                setUserProfile,
+              }}
+            />
+          ) : null}
+        </LoginPanel>
+        <SearchDiv>
+          <Search videosQuery={videos} handleFormSubmit={handleFetch} />
+        </SearchDiv>
+
+        <Logo>
+          AviTube<span>everywhere</span>
+        </Logo>
+      </Header>
+      <Content>
+        <Screen>
+          <VideoScreen
+            {...{
+              selectedVideo,
+              setCatagories,
+              selectedCategory,
+              catagories,
+              userToken,
+              isConnected,
+            }}
+          ></VideoScreen>
+        </Screen>
+        <ListBox>
+          <VideoList
+            {...{
+              catagories,
+              setSelectedVideo,
+              setCatagories,
+              userToken,
+              isConnected,
+            }}
+          />
+        </ListBox>
+      </Content>
+      <Footer>
+        <CategoryDiv>
+          <CategoryCreator
+            {...{
+              catagories,
+              setCatagories,
+              selectedCategory,
+              setSelectedCategory,
+              userToken,
+              isConnected,
+              selectedVideo,
+            }}
+          />
+        </CategoryDiv>
+      </Footer>
+    </Page>
+  );
+};
+
+export default App;
+
+const Page = styled.div`
+  margin: 0px auto 0 auto;
+  width: 1200px;
+  height: 100%;
+  @media only screen and (max-width: 414px) {
+    width: 100%;
+  }
+`;
+const Logo = styled.div`
+  padding: 10px;
+  font-family: fantasy;
+  letter-spacing: 5px;
+  color: red;
+  font-size: 30px;
+  span {
+    color: #000;
+  }
+  @media only screen and (max-width: 414px) {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.55em;
+    letter-spacing: 1px;
+    width: 70px;
+    padding: 3px;
+    padding-top: 10px;
+    span {
+      color: #000;
+      font-size: 9px;
+    }
+  }
+`;
+const Header = styled.div`
+  height: 64px;
+  padding: 14px 20px 7px 20px;
+  display: flex;
+  justify-content: space-between;
+  @media only screen and (max-width: 414px) {
+    height: 50px;
+    width: 92%;
+    padding: 2px 5px;
+  }
+`;
+const Footer = styled.div`
+  height: 90px;
+  padding: 10px 20px 10px 20px;
+  display: flex;
+  bottom: 20px;
+  background: ${FOOTER_BACKGROUND};
+  @media only screen and (max-width: 414px) {
+    height: 154px;
+    padding: 5px;
+  }
+`;
+const SearchDiv = styled.div`
+  width: 80%;
+  display: flex;
+  margin-right: 10px;
+  margin-top: 5px;
+  justify-content: flex-start;
+  @media only screen and (max-width: 414px) {
+    margin-right: 0px;
+    width: 50%;
+  }
+`;
+const LoginPanel = styled.div`
+  width: 30%;
+  display: flex;
+  margin-right: 10px;
+  @media only screen and (max-width: 414px) {
+    margin-right: 2px;
+    width: 28%;
+    padding: 2px;
+  }
+`;
+
+const CategoryDiv = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 5px 10px;
+  @media only screen and (max-width: 414px) {
+    padding: 1px;
+  }
+`;
+const Content = styled.div`
+  display: flex;
+  border: 1px solid ${BORDER};
+  height: 73%;
+  @media only screen and (max-width: 414px) {
+    height: initial;
+    flex-direction: column;
+  }
+`;
+const Screen = styled.div`
+  background: #ffffff;
+  border-radius: 4px;
+
+  padding-bottom: 24px;
+  width: 60%;
+  @media only screen and (max-width: 414px) {
+    padding-bottom: 4px;
+    width: 100%;
+  }
+`;
+const ListBox = styled.div`
+  width: 40%;
+  background: ${BACKGROUND};
+  display: flex;
+  @media only screen and (max-width: 414px) {
+    padding-bottom: 4px;
+    width: 100%;
+  }
+`;
