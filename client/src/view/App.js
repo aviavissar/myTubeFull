@@ -45,9 +45,13 @@ const App = () => {
       type: "video",
       maxResults: 10,
     };
-    let result = await searchYoutube(KEY, options);
-    // console.log(result)
-    setvideos(result.items);
+    try {
+      let result = await searchYoutube(KEY, options);
+      // console.log(result)
+      setvideos(result.items);
+    } catch (error) {
+      alert('you exceeded your search try tomorrow ')
+    }
   };
 
   const doLogIn = async (email, password) => {
