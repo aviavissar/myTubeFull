@@ -16,7 +16,8 @@ import {
   createCategory,
 } from "../service/fetchApi";
 
-const KEY = "AIzaSyAtRMgT2nlK5BIk1LTyLsrl0qvaVcMmB9E"; //'AIzaSyBjCR--vSQ75wgxc05OlVZVQP5hsz8Qt0w';
+
+const KEY = "AIzaSyAtDzAQPfESDrD7IVpWsbC_Ga3g0ja6lxE"; //'AIzaSyAtRMgT2nlK5BIk1LTyLsrl0qvaVcMmB9E';
 
 const App = () => {
   const {
@@ -45,12 +46,17 @@ const App = () => {
       type: "video",
       maxResults: 10,
     };
+    console.log(query.length);
     try {
-      let result = await searchYoutube(KEY, options);
-      // console.log(result)
-      setvideos(result.items);
-    } catch (error) {
-      alert('you exceeded your search try tomorrow ')
+      if (query.length > 1) {
+        let result = await searchYoutube(KEY, options);
+        setvideos(result.items);
+      }
+    } catch (e) {
+      console.log(e);
+      if (e.error.code === 403) {
+        alert("you exceeded your search try tomorrow ");
+      }
     }
   };
 
@@ -259,13 +265,13 @@ const LoginPanel = styled.div`
     padding: 2px;
   }
 `;
-
 const CategoryDiv = styled.div`
   width: 100%;
   display: flex;
   padding: 5px 10px;
   @media only screen and (max-width: 414px) {
     padding: 1px;
+    justify-content: space-around;
   }
 `;
 const Content = styled.div`
@@ -280,7 +286,6 @@ const Content = styled.div`
 const Screen = styled.div`
   background: #ffffff;
   border-radius: 4px;
-
   padding-bottom: 24px;
   width: 60%;
   @media only screen and (max-width: 414px) {
