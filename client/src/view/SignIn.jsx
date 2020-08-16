@@ -181,7 +181,7 @@ const SignIn = ({
                     onChange={handleChange}
                     inputRef={passConfInput}
                     size="small"
-                    className={classes.MuiFormControl}
+                    className={isConnected ? "none" : classes.MuiFormControl}
                     error={
                       errors.passwordConfirmation &&
                       touched.passwordConfirmation
