@@ -1,6 +1,5 @@
 import React, { useState, createContext, useContext, useEffect } from "react";
 
-
 const YouTubeStore = createContext();
 const { Provider } = YouTubeStore;
 
@@ -16,13 +15,11 @@ const YouTubeProvider = ({ children }) => {
   let [selectedVideo, setSelectedVideo] = useState(null);
   let [videos, setvideos] = useState([]);
   let [catagories, setCatagories] = useState([]);
-  let [selectedCategory, setSelectedCategory] = useState('');
+  let [selectedCategory, setSelectedCategory] = useState("");
   let [listVideos, setListVideos] = useState([]);
   const [userProfile, setUserProfile] = useState({});
   const [userToken, setUserToken] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
-
-
 
   // state = values to display
   const state = {

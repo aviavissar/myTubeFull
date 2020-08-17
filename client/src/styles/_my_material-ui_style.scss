@@ -23,12 +23,16 @@
   display: flex;
   padding: 8px 0;
 }
-button.MuiButton-root{
-  font-size:0.8rem;
+button.MuiButton-root {
+  font-size: 0.8rem;
   width: 60px;
   padding: 1px;
   margin: 5px;
-  border:none;
+  border: none;
+}
+.jss7 {
+  width: 320px;
+  padding-left: calc(50% - 164px);
 }
 
 .MuiAccordion-root.Mui-disabled {
@@ -46,21 +50,21 @@ button.MuiButton-root{
 }
 
 button.MuiButton-outlinedPrimary {
-    border: none;
- min-width: 90px;
+  border: none;
+  min-width: 90px;
   margin: 0 10px;
   padding: 1px 5px;
   width: 60px;
-   color:black;
-    font-size: 0.8rem;
+  color: black;
+  font-size: 0.8rem;
 }
 button.MuiButton-outlinedPrimary:hover {
   border: none;
-  background-color:transparent;
+  background-color: transparent;
   font-weight: 600;
 }
-span.MuiButton-label{
-font-size:12px;
+span.MuiButton-label {
+  font-size: 14px;
 }
 
 svg:not(:root) {
@@ -68,30 +72,30 @@ svg:not(:root) {
   height: 20px;
 }
 
-
 @media only screen and (max-width: 414px) {
   button.MuiButton-outlinedPrimary {
     border: none;
     min-width: initial;
-    margin: 0 2px;
-    padding: 1px;
-    width: 45px;
+    margin: 0 -2px 5px 0px;
+    padding: 3px;
+    width: 58px;
     color: black;
-    height: 39px;
-    span{
-      font-size: 0.60rem;
-    line-height: 1;
+    height: 34px;
+
+    span {
+      font-size: 0.6rem;
+      line-height: 1.2;
+      text-transform: capitalize;
     }
-}
-.MuiDialog-paperWidthSm {
-  max-width: 300px !important ;
-}
-.MuiDialog-paper {
- 
-  top: -8%;
-}
-span.MuiButton-label{
-  font-size: 0.7rem;
+  }
+  .MuiDialog-paperWidthSm {
+    max-width: 300px !important ;
+  }
+  .MuiDialog-paper {
+    top: -8%;
+  }
+  span.MuiButton-label {
+    font-size: 0.7rem;
   }
   .MuiCollapse-wrapperInner .MuiAccordionDetails-root {
     padding: 0px;

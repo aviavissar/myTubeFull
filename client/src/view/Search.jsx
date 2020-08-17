@@ -67,7 +67,7 @@ const Ul = styled.ul`
     min-width: initial;
     margin: 0px;
     padding: 0px 5px;
-    height:initial;
+    height: initial;
     color: black;
     font-size: 0.8rem;
     width: 130px;

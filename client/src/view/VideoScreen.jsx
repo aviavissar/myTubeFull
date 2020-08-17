@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import YouTube from "react-youtube";
-import { isMobile } from 'mobile-device-detect'
+import { isMobile } from "react-device-detect";
 import { updateCategory } from "../service/fetchApi";
+
 const VideoScreen = ({
   selectedVideo,
   setCatagories,
@@ -12,8 +13,8 @@ const VideoScreen = ({
   isConnected,
 }) => {
   const opts = {
-    height:isMobile?"200" :"390",
-    width:isMobile?"300": "640",
+    height: isMobile ? "200" : "390",
+    width: isMobile ? "300" : "640",
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
@@ -72,8 +73,9 @@ const Box = styled.div`
   padding: 0.1rem;
   height: 500px;
   @media only screen and (max-width: 414px) {
-    width: 100%;
-    height: 58vh;
+        height: 58vh;
+    padding: 10px 16px;
+    width: 93%;
   }
 `;
 
@@ -86,6 +88,7 @@ const Screen = styled.div`
   @media only screen and (max-width: 414px) {
     width: 100%;
     height: 35vh;
+    padding: 0;
   }
 `;
 
@@ -96,6 +99,7 @@ const Title = styled.h3`
   margin-bottom: 11px;
   font-weight: 600;
   @media only screen and (max-width: 414px) {
-    font-size: 1rem;
+    font-size: 0.65rem;
+    line-height: 1rem;
   }
 `;

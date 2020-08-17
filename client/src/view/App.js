@@ -16,8 +16,7 @@ import {
   createCategory,
 } from "../service/fetchApi";
 
-
-const KEY = "AIzaSyAtDzAQPfESDrD7IVpWsbC_Ga3g0ja6lxE"; //'AIzaSyAtRMgT2nlK5BIk1LTyLsrl0qvaVcMmB9E';
+const KEY = process.env.REACT_APP_YOUTUBE_KEY; // "AIzaSyAtDzAQPfESDrD7IVpWsbC_Ga3g0ja6lxE"
 
 const App = () => {
   const {
@@ -39,6 +38,7 @@ const App = () => {
 
   const [errMesg, setErrMesg] = useState("");
 
+  console.log(KEY);
   const handleFetch = async (query) => {
     const options = {
       q: query,
@@ -193,10 +193,14 @@ export default App;
 
 const Page = styled.div`
   margin: 0px auto 0 auto;
-  width: 1200px;
+
   height: 100%;
+  max-width: 1200px;
   @media only screen and (max-width: 414px) {
-    width: 100%;
+    max-width: 414px;
+  }
+  @media only screen and (max-width: 360px) {
+    max-width: 360px;
   }
 `;
 const Logo = styled.div`
@@ -211,14 +215,14 @@ const Logo = styled.div`
   @media only screen and (max-width: 414px) {
     display: flex;
     flex-direction: column;
-    font-size: 0.55em;
+    font-size: 0.65em;
     letter-spacing: 1px;
     width: 70px;
     padding: 3px;
     padding-top: 10px;
     span {
       color: #000;
-      font-size: 9px;
+      font-size: 10px;
     }
   }
 `;
@@ -227,10 +231,15 @@ const Header = styled.div`
   padding: 14px 20px 7px 20px;
   display: flex;
   justify-content: space-between;
+
   @media only screen and (max-width: 414px) {
+    max-width: 414px;
     height: 50px;
-    width: 92%;
+    width: 99%;
     padding: 2px 5px;
+  }
+  @media only screen and (max-width: 360px) {
+    max-width: 360px;
   }
 `;
 const Footer = styled.div`
@@ -252,7 +261,7 @@ const SearchDiv = styled.div`
   justify-content: flex-start;
   @media only screen and (max-width: 414px) {
     margin-right: 0px;
-    width: 50%;
+    width: initial;
   }
 `;
 const LoginPanel = styled.div`

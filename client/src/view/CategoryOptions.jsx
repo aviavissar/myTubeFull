@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
-const CategoryOptions = ({ catagories = [], getCatID ,setSelectedCategory, isConnected}) => {
- 
-
+const CategoryOptions = ({
+  catagories = [],
+  getCatID,
+  setSelectedCategory,
+  isConnected,
+}) => {
   const handleSelectChange = (e) => {
     if (true) {
-    getCatID(e.target.value);
+      getCatID(e.target.value);
       console.log(e.target.value);
       setSelectedCategory(e.target.value);
     }
@@ -14,13 +17,16 @@ const CategoryOptions = ({ catagories = [], getCatID ,setSelectedCategory, isCon
 
   return (
     <Select>
-      <select className={ isConnected ? "" : "disable"} onClick={handleSelectChange}>
+      <select
+        className={isConnected ? "" : "disable"}
+        onClick={handleSelectChange}
+      >
         {catagories.map((ctg, inx) => {
           return (
             <option
               key={ctg.cat_name + inx}
               id={ctg._id}
-             value={ctg._id}
+              value={ctg._id}
               defaultValue={ctg._id}
             >
               {ctg.cat_name}

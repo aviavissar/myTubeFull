@@ -44,7 +44,6 @@ const CategoryCreator = ({
     e.preventDefault();
     if (catagories.length > 1) {
       const newCat = catagories.filter((cat) => cat._id !== deletecatID);
-
       setCatagories(newCat);
       console.log(deletecatID);
       deleteCategory(userToken, deletecatID);

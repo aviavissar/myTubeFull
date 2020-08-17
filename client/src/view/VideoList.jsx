@@ -77,14 +77,13 @@ const List = styled.div`
   font-size: 12px;
   padding: 20px;
   @media only screen and (max-width: 414px) {
-    div{
-    display: flex;
-    flex-direction: column;
-    div{
-      margin-bottom: 20px;
+    div {
+      display: flex;
+      flex-direction: column;
+      div {
+        margin-bottom: 20px;
+      }
     }
-  }
- 
   }
 `;
 const BtDelete = styled.button`
@@ -110,7 +109,7 @@ const BtA = styled.button`
   text-align: initial;
   text-decoration: underline;
   cursor: pointer;
-  height:20px;
+  height: 20px;
   @media only screen and (max-width: 414px) {
     width: fit-content;
     font-size: 10px;
@@ -122,7 +121,7 @@ const H = styled.h2`
   font-size: 16px;
   @media only screen and (max-width: 414px) {
     margin: 10px 0 0px 0;
-  font-size: 16px;
+    font-size: 16px;
   }
 `;
 const Li = styled.li`
