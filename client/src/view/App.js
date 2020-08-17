@@ -16,7 +16,7 @@ import {
   createCategory,
 } from "../service/fetchApi";
 
-const KEY = process.env.REACT_APP_YOUTUBE_KEY; // "AIzaSyAtDzAQPfESDrD7IVpWsbC_Ga3g0ja6lxE"
+const KEY = process.env.REACT_APP_YOUTUBE_KEY; 
 
 const App = () => {
   const {
