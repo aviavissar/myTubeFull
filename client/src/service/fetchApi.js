@@ -2,11 +2,6 @@ import axios1 from "axios";
 let axios = axios1.default;
 
 
-let token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZThmYjFkMThjNmM0MjM0Yzg4MGMyNyIsImlhdCI6MTU5MjUxNTQwOH0.QKGwL9AFIHZuHUZlpUvw8N4e91geQ3iAwwLlIV8LHok";
-
-
-
 export const login = async (email, password) => {
   try {
     console.log(email + "," + password);
@@ -23,7 +18,7 @@ export const login = async (email, password) => {
       } else if (response.data === 401) {
         return new Error("wrong password try again");
       }
-      token = response.data.token;
+     
       return response;
     }
   } catch (e) {
