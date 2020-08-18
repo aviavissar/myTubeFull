@@ -77,7 +77,6 @@ const CategoryCreator = ({
       <Inp>
         <input
           type="text"
-          className="category"
           value={catInput}
           onChange={(e) => setCatInput(e.target.value)}
           placeholder="category name"
