@@ -49,8 +49,8 @@ router.get("/users/me", auth, async (req, res) => {
 
 router.patch("/users/me", auth, async (req, res) => {
   const valid = ["fname", "lname", "password"];
-  const update = Object.keys(req.body);
-  const isValid = update.every((key) => valid.includes(key));
+  const update = Object.keys(req.body);console.log("req.user")
+  const isValid = update.every((key) => valid.includes(key));console.log("55")
   if (!isValid) {
     res.status(404).send({ error: "invalid update" });
   }
@@ -58,8 +58,9 @@ router.patch("/users/me", auth, async (req, res) => {
     update.forEach((key) => {
       req.user[key] = req.body[key];
     });
-
-    await req.user.save();
+    console.log(req.user)
+   await req.user.save();
+    console.log(req.user)
     res.send(req.user);
   } catch (error) {
     res.status(404).send(error);
