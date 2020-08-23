@@ -69,10 +69,10 @@ const Ul = styled.ul`
     padding: 0px 5px;
     height: initial;
     color: black;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     width: 130px;
     right: 50px;
     width: 150%;
-    top: 3px;
+    top: 11px;
   }
 `;

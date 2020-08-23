@@ -16,7 +16,7 @@ import {
   createCategory,
 } from "../service/fetchApi";
 
-const KEY = process.env.REACT_APP_YOUTUBE_KEY; 
+const KEY = process.env.REACT_APP_YOUTUBE_KEY; // "AIzaSyAtDzAQPfESDrD7IVpWsbC_Ga3g0ja6lxE"
 
 const App = () => {
   const {
@@ -105,7 +105,7 @@ const App = () => {
               {...{
                 doLogIn,
                 isConnected: false,
-                title: "Sign In",
+                title: "SignUp",
                 setUserProfile,
               }}
             />
@@ -215,14 +215,20 @@ const Logo = styled.div`
   @media only screen and (max-width: 414px) {
     display: flex;
     flex-direction: column;
-    font-size: 0.65em;
+    font-size: 0.55em;
     letter-spacing: 1px;
     width: 70px;
     padding: 3px;
     padding-top: 10px;
+    font-weight: bold;
+    margin: 4px -1px 4px 2px;
+    padding-right: 10px;
+    line-height: 1;
+    font-family: monospace;
     span {
       color: #000;
-      font-size: 10px;
+      font-size: 8px;
+      font-weight: normal;
     }
   }
 `;
@@ -236,7 +242,7 @@ const Header = styled.div`
     max-width: 414px;
     height: 50px;
     width: 99%;
-    padding: 2px 5px;
+    padding: 10px 5px;
   }
   @media only screen and (max-width: 360px) {
     max-width: 360px;
@@ -270,7 +276,7 @@ const LoginPanel = styled.div`
   margin-right: 10px;
   @media only screen and (max-width: 414px) {
     margin-right: 2px;
-    width: 28%;
+    width: 23%;
     padding: 2px;
   }
 `;
@@ -286,7 +292,7 @@ const CategoryDiv = styled.div`
 const Content = styled.div`
   display: flex;
   border: 1px solid ${BORDER};
-  height: 73%;
+  
   @media only screen and (max-width: 414px) {
     height: initial;
     flex-direction: column;

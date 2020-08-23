@@ -12,11 +12,17 @@ const VideoScreen = ({
   userToken,
   isConnected,
 }) => {
+  const checkvh = () => {
+    if (window.innerHeight < 600) return 250;
+    if (window.innerHeight < 750) return 300;
+    if (window.innerHeight < 1080) return 360;
+    if (window.innerHeight < 2000) return 400;
+  };
+  console.log(window.innerHeight);
   const opts = {
-    height: isMobile ? "200" : "390",
+    height: isMobile ? "200" : checkvh(),
     width: isMobile ? "300" : "640",
     playerVars: {
-      // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
     },
   };
@@ -71,9 +77,9 @@ export default VideoScreen;
 
 const Box = styled.div`
   padding: 0.1rem;
-  height: 500px;
+
   @media only screen and (max-width: 414px) {
-        height: 58vh;
+    height: 54vh;
     padding: 10px 16px;
     width: 93%;
   }
@@ -81,7 +87,7 @@ const Box = styled.div`
 
 const Screen = styled.div`
   width: 640px;
-  height: 50vh;
+  height: 48vh;
   margin-bottom: 10px;
   font-size: 12px;
   padding: 20px;

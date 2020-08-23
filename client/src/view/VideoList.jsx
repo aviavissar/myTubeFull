@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components/macro";
 import { BACKGROUND } from "../styles/colors";
-import { updateCategory, createList } from "../service/fetchApi";
+import { createList } from "../service/fetchApi";
+import Video from "./Video";
 
 const VideoList = ({
   catagories,
@@ -10,17 +11,16 @@ const VideoList = ({
   userToken,
   isConnected,
 }) => {
-  const deleteVideo = (category, indx) => {
-    let tmpAll = catagories.filter((cat) => cat._id !== category._id);
-    let tmpCat = catagories.find((cat) => cat._id === category._id);
-    tmpCat.videos.splice(indx, 1);
-    setCatagories([tmpCat, ...tmpAll]);
-    updateCategory(tmpCat, userToken);
-  };
-
   const saveJson = () => {
     if (isConnected) {
-      createList(userToken, catagories);
+      try {
+        createList(userToken, catagories);
+        alert(
+          "success! the file been create and sended to your mail and download folder"
+        );
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -36,14 +36,17 @@ const VideoList = ({
                   <ul>
                     {cat.videos.map((vid, indx) => {
                       return (
-                        <Li key={vid + indx}>
-                          <BtA onClick={() => setSelectedVideo(vid)}>
-                            {vid.snippet.title}
-                          </BtA>
-                          <BtDelete onClick={() => deleteVideo(cat, indx)}>
-                            delete
-                          </BtDelete>
-                        </Li>
+                        <Video key={vid.snippet.title+indx}
+                          {...{
+                            vid,
+                            cat,
+                            indx,
+                            userToken,
+                            catagories,
+                            setCatagories,
+                            setSelectedVideo,
+                          }}
+                        />
                       );
                     })}
                   </ul>
@@ -71,7 +74,7 @@ const ListDiv = styled.div`
   flex-direction: column;
 `;
 const List = styled.div`
-  height: 50vh;
+  height: 48vh;
   background-color: ${BACKGROUND};
   margin-bottom: 10px;
   font-size: 12px;
@@ -86,35 +89,7 @@ const List = styled.div`
     }
   }
 `;
-const BtDelete = styled.button`
-  height: 22px;
-  background-color: #e08585;
-  margin-bottom: 4px;
-  font-size: 14px;
-  padding: 0 5px;
-  min-width: 62px;
-  @media only screen and (max-width: 414px) {
-    font-size: 12px;
-    padding: 1px;
-    height: 20px;
-  }
-`;
-const BtA = styled.button`
-  width: 360px;
-  font-size: 12px;
-  padding: 1px;
-  min-width: 62px;
-  background-color: transparent;
-  color: black;
-  text-align: initial;
-  text-decoration: underline;
-  cursor: pointer;
-  height: 20px;
-  @media only screen and (max-width: 414px) {
-    width: fit-content;
-    font-size: 10px;
-  }
-`;
+
 const H = styled.h2`
   font-weight: bold;
   margin: 10px 0 4px 0;
@@ -124,9 +99,4 @@ const H = styled.h2`
     font-size: 16px;
   }
 `;
-const Li = styled.li`
-  margin-bottom: 8px;
-  @media only screen and (max-width: 414px) {
-    height: 17px;
-  }
-`;
+

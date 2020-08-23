@@ -36,7 +36,7 @@ const CategoryCreator = ({
         return;
       }
     } else {
-      alert("put a category name");
+      alert("You need to put a category name");
     }
   };
 

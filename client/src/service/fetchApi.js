@@ -1,7 +1,6 @@
 import axios1 from "axios";
 let axios = axios1.default;
 
-
 export const login = async (email, password) => {
   try {
     console.log(email + "," + password);
@@ -18,7 +17,7 @@ export const login = async (email, password) => {
       } else if (response.data === 401) {
         return new Error("wrong password try again");
       }
-     
+
       return response;
     }
   } catch (e) {
@@ -44,8 +43,6 @@ export const logout = async (userToken) => {
 };
 
 export const createUser = async (email, password, fname, lname) => {
-  console.log("createftch");
-  // eslint-disable-next-line no-useless-catch
   try {
     const response = await axios({
       method: "post",
@@ -72,7 +69,7 @@ export const createUser = async (email, password, fname, lname) => {
 };
 
 export const updateProfile = async (profile, userToken) => {
-  const { password, fname='my defaultName', lname } = profile;
+  const { password, fname = "my defaultName", lname } = profile;
   try {
     console.log("response", profile);
     const response = await axios({
@@ -81,13 +78,13 @@ export const updateProfile = async (profile, userToken) => {
       data: {
         fname,
         lname,
-               password,
+        password,
       },
       headers: {
         Authorization: userToken,
       },
     });
-    console.log(response.data)
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(" client error");
@@ -117,7 +114,7 @@ export const createCategory = async (userToken, category) => {
       method: "post",
       url: "/catagories",
       headers: {
-                "Content-Type": "application/json; charset=utf-8",
+        "Content-Type": "application/json; charset=utf-8",
         Authorization: userToken,
       },
       data: category,
@@ -129,7 +126,6 @@ export const createCategory = async (userToken, category) => {
   }
 };
 export const updateCategory = async (editCat, userToken) => {
-  console.log(editCat);
   const { _id, cat_name, videos } = editCat;
   try {
     console.log("response", editCat);

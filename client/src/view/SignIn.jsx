@@ -42,9 +42,10 @@ const SignIn = ({
       doLogIn(email, password);
       handleClose();
     } else {
-      if (fname === "") {
-        fname = (prevState) => ({ ...prevState.userProfile.fname });
+      if (password === "") {
+        password = (prevState) => ({ ...prevState.userProfile.password });
       }
+      
       const newProfile = await updateProfile(
         { email, password, fname, lname },
         userToken
@@ -74,15 +75,15 @@ const SignIn = ({
         <DialogTitle id="form-dialog-title"> {title} details</DialogTitle>
         <Formik
           initialValues={{
-            fname: !isConnected ? userProfile.fname : "",
-            lname: !isConnected ? userProfile.lname : "",
-            email: !isConnected ? userProfile.email : "",
-            password: !isConnected ? userProfile.email : "",
-            passwordConfirmation: !isConnected ? userProfile.email : "",
+            fname:isConnected ? userProfile.fname : "",
+            lname: isConnected ? userProfile.lname : "",
+            email: isConnected ? userProfile.email : "",
+            password: isConnected ? userProfile.email : "",
+            passwordConfirmation: isConnected ? userProfile.email : "",
           }}
           validationSchema={schema}
           onSubmit={(values, actions) => {
-            console.log("values");
+            console.log( fnameInput.current.value);
             doSignUp(
               mailInput.current.value,
               passInput.current.value,
@@ -103,7 +104,7 @@ const SignIn = ({
                     margin="normal"
                     error={errors.fname && touched.fname}
                     id="fname"
-                    defaultValue={!isConnected ? userProfile.fname : ""}
+                    defaultValue={isConnected ? userProfile.fname : ""}
                     name="fname"
                     label="first name"
                     type="text"
@@ -124,7 +125,7 @@ const SignIn = ({
                     type="text"
                     size="small"
                     name="lname"
-                    defaultValue={!isConnected ? userProfile.lname : ""}
+                    defaultValue={isConnected ? userProfile.lname : ""}
                     onChange={handleChange}
                     inputRef={lnameInput}
                     className={classes.MuiFormControl}
@@ -181,7 +182,7 @@ const SignIn = ({
                     onChange={handleChange}
                     inputRef={passConfInput}
                     size="small"
-                    className={isConnected ? "none" : classes.MuiFormControl}
+                    className={ classes.MuiFormControl}
                     error={
                       errors.passwordConfirmation &&
                       touched.passwordConfirmation

@@ -65,6 +65,7 @@ button.MuiButton-outlinedPrimary:hover {
 }
 span.MuiButton-label {
   font-size: 14px;
+  text-transform: capitalize;
 }
 
 svg:not(:root) {
@@ -78,12 +79,12 @@ svg:not(:root) {
     min-width: initial;
     margin: 0 -2px 5px 0px;
     padding: 3px;
-    width: 58px;
+    width: 44px;
     color: black;
-    height: 34px;
+    height: 37px;
 
     span {
-      font-size: 0.6rem;
+      font-size: 0.72rem;
       line-height: 1.2;
       text-transform: capitalize;
     }

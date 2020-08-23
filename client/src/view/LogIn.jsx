@@ -30,12 +30,12 @@ const LogIn = ({ userProfile, isConnected, doLogIn, doLogout, errMesg }) => {
             setOpen(true);
           }}
         >
-          Log In
+          LogIn
         </Button>
       ) : (
         <div className={classes.logoutDiv}>
           <Button variant="outlined" color="primary" onClick={doLogout}>
-            log Out
+            logOut
           </Button>
           <div className={classes.logspan}>
             <span>hi {userProfile.fname}</span>

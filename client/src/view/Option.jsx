@@ -27,6 +27,9 @@ const Box = styled.div`
 const Li = styled.li`
   line-height: 35px;
   list-style: none;
+  @media only screen and (max-width: 414px) {
+    line-height: 1.5;
+  }
 `;
 
 const A = styled.a`
