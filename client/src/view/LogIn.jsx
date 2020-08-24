@@ -37,7 +37,7 @@ const LogIn = ({ userProfile, isConnected, doLogIn, doLogout, errMesg }) => {
           <Button variant="outlined" color="primary" onClick={doLogout}>
             logOut
           </Button>
-          <div className={classes.logspan}>
+          <div className="hi-div">
             <span>hi {userProfile.fname}</span>
           </div>
         </div>
@@ -105,10 +105,4 @@ const useStyles = makeStyles({
     width: "320px",
   },
 
-  logspan: {
-    "margin-top": "-5px",
-    "margin": "5px",
-    "font-size": "0.9rem",
-    "font-weight": "600",
-  },
 });

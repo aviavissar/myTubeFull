@@ -16,7 +16,7 @@ import {
   createCategory,
 } from "../service/fetchApi";
 
-const KEY = process.env.REACT_APP_YOUTUBE_KEY; // "AIzaSyAtDzAQPfESDrD7IVpWsbC_Ga3g0ja6lxE"
+const KEY = process.env.REACT_APP_YOUTUBE_KEY||process.env.REACT_APP_YOUTUBE_KEY2;
 
 const App = () => {
   const {
@@ -50,6 +50,7 @@ const App = () => {
     try {
       if (query.length > 1) {
         let result = await searchYoutube(KEY, options);
+        console.log(result)
         setvideos(result.items);
       }
     } catch (e) {
@@ -195,12 +196,15 @@ const Page = styled.div`
   margin: 0px auto 0 auto;
 
   height: 100%;
-  max-width: 1200px;
+  width: 1200px;
   @media only screen and (max-width: 414px) {
-    max-width: 414px;
+    width: 394px;
+  }
+  @media only screen and (max-width: 375px) {
+    width: 355px;
   }
   @media only screen and (max-width: 360px) {
-    max-width: 360px;
+    width: 340px;
   }
 `;
 const Logo = styled.div`
@@ -217,7 +221,6 @@ const Logo = styled.div`
     flex-direction: column;
     font-size: 0.55em;
     letter-spacing: 1px;
-    width: 70px;
     padding: 3px;
     padding-top: 10px;
     font-weight: bold;
@@ -239,13 +242,11 @@ const Header = styled.div`
   justify-content: space-between;
 
   @media only screen and (max-width: 414px) {
-    max-width: 414px;
     height: 50px;
-    width: 99%;
     padding: 10px 5px;
+    border-bottom: 1px solid ${BORDER};
   }
   @media only screen and (max-width: 360px) {
-    max-width: 360px;
   }
 `;
 const Footer = styled.div`
@@ -273,10 +274,9 @@ const SearchDiv = styled.div`
 const LoginPanel = styled.div`
   width: 30%;
   display: flex;
-  margin-right: 10px;
   @media only screen and (max-width: 414px) {
-    margin-right: 2px;
-    width: 23%;
+    margin-left: -13px;
+    width: initial;
     padding: 2px;
   }
 `;
@@ -292,10 +292,11 @@ const CategoryDiv = styled.div`
 const Content = styled.div`
   display: flex;
   border: 1px solid ${BORDER};
-  
+
   @media only screen and (max-width: 414px) {
     height: initial;
     flex-direction: column;
+    border:none;
   }
 `;
 const Screen = styled.div`

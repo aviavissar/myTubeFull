@@ -63,10 +63,19 @@ button.MuiButton-outlinedPrimary:hover {
   background-color: transparent;
   font-weight: 600;
 }
+.hi-div{
+  margin: 5px;
+  font-size: 0.9rem;
+  margin-top: -5px;
+  font-weight: 600;
+  position: absolute;
+}
+
 span.MuiButton-label {
   font-size: 14px;
   text-transform: capitalize;
 }
+
 
 svg:not(:root) {
   overflow: visible;
@@ -77,9 +86,9 @@ svg:not(:root) {
   button.MuiButton-outlinedPrimary {
     border: none;
     min-width: initial;
-    margin: 0 -2px 5px 0px;
+    margin: 0  5px 5px 5px;
     padding: 3px;
-    width: 44px;
+    width: initial;
     color: black;
     height: 37px;
 
@@ -89,6 +98,9 @@ svg:not(:root) {
       text-transform: capitalize;
     }
   }
+
+  button.editbt{width:67px;}
+  
   .MuiDialog-paperWidthSm {
     max-width: 300px !important ;
   }

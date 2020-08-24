@@ -29,7 +29,8 @@ const Search = ({ handleFormSubmit, videosQuery }) => {
                 title={vid.snippet.title}
                 setTrem={() => setTerm("")}
                 videoObj={vid}
-              ></Option>
+                indx={indx}
+              />
             );
           })}
         </Ul>
@@ -63,16 +64,15 @@ const Ul = styled.ul`
   border-bottom-right-radius: 15px;
   border: 1px solid ${BORDER};
   border-top: none;
+  left: -85px;
   @media only screen and (max-width: 414px) {
     min-width: initial;
     margin: 0px;
-    padding: 0px 5px;
     height: initial;
     color: black;
-    font-size: 0.6rem;
-    width: 130px;
-    right: 50px;
-    width: 150%;
+    font-size: 0.62rem;
+    width: 200%;
     top: 11px;
+    left: -115px;
   }
 `;

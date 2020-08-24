@@ -83,6 +83,11 @@ const Box = styled.div`
     padding: 10px 16px;
     width: 93%;
   }
+  @media only screen and (max-width: 360px) {
+    height: 54vh;
+    padding: 10px 16px;
+    width: 90%;
+  }
 `;
 
 const Screen = styled.div`

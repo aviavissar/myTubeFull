@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useStore } from "../state/YouTube.store";
 
-const Option = ({ title, videoObj, setTrem }) => {
+const Option = ({ title, videoObj, setTrem,indx }) => {
   const { setSelectedVideo, setvideos } = useStore();
 
   const startPlay = () => {
@@ -11,7 +11,7 @@ const Option = ({ title, videoObj, setTrem }) => {
     setTrem();
   };
   return (
-    <Box>
+    <Box className={'box'+indx}>
       <Li>
         <A onClick={startPlay}>{title}</A>
       </Li>
@@ -22,14 +22,13 @@ export default Option;
 
 const Box = styled.div`
   position: relative;
+ 
 `;
 
 const Li = styled.li`
-  line-height: 35px;
+  line-height: 2.5;
   list-style: none;
-  @media only screen and (max-width: 414px) {
-    line-height: 1.5;
-  }
+  
 `;
 
 const A = styled.a`

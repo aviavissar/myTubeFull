@@ -60,7 +60,7 @@ const SignIn = ({
     <div>
       <Button
         variant="outlined"
-        className={classes.MuiButton}
+        className='editbt'
         color="primary"
         onClick={handleClickOpen}
       >
@@ -218,12 +218,7 @@ const useStyles = makeStyles({
   "MuiDialog-paperScrollPaper": {
     " max-height": "500px",
   },
-  MuiButton: {
-    "font-size": "14px",
-    width: "60px",
-    padding: "1px",
-    margin: "5px",
-  },
+ 
   root: {
     display: "flex",
   },
