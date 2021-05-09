@@ -45,7 +45,7 @@ const SignIn = ({
       if (password === "") {
         password = (prevState) => ({ ...prevState.userProfile.password });
       }
-      
+
       const newProfile = await updateProfile(
         { email, password, fname, lname },
         userToken
@@ -60,7 +60,7 @@ const SignIn = ({
     <div>
       <Button
         variant="outlined"
-        className='editbt'
+        className="editbt"
         color="primary"
         onClick={handleClickOpen}
       >
@@ -75,7 +75,7 @@ const SignIn = ({
         <DialogTitle id="form-dialog-title"> {title} details</DialogTitle>
         <Formik
           initialValues={{
-            fname:isConnected ? userProfile.fname : "",
+            fname: isConnected ? userProfile.fname : "",
             lname: isConnected ? userProfile.lname : "",
             email: isConnected ? userProfile.email : "",
             password: isConnected ? userProfile.email : "",
@@ -83,7 +83,7 @@ const SignIn = ({
           }}
           validationSchema={schema}
           onSubmit={(values, actions) => {
-            console.log( fnameInput.current.value);
+            console.log(fnameInput.current.value);
             doSignUp(
               mailInput.current.value,
               passInput.current.value,
@@ -182,7 +182,7 @@ const SignIn = ({
                     onChange={handleChange}
                     inputRef={passConfInput}
                     size="small"
-                    className={ classes.MuiFormControl}
+                    className={classes.MuiFormControl}
                     error={
                       errors.passwordConfirmation &&
                       touched.passwordConfirmation
@@ -218,7 +218,7 @@ const useStyles = makeStyles({
   "MuiDialog-paperScrollPaper": {
     " max-height": "500px",
   },
- 
+
   root: {
     display: "flex",
   },

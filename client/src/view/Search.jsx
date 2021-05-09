@@ -7,8 +7,8 @@ import Option from "./Option";
 import useDebounce from "../service/useDebounce";
 
 const Search = () => {
-  const KEY = "AIzaSyDqR-0y3VVOk98ypwvhePJF8rqesXb8RaM"; // process.env.REACT_APP_YOUTUBE_KEY;
-  const { setvideos ,videos} = useStore();
+  const KEY = process.env.REACT_APP_YOUTUBE_KEY;
+  const { setvideos, videos } = useStore();
   const [display, setDisplay] = useState("none");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDisplay, setselectedDisplay] = useState("");
@@ -35,7 +35,7 @@ const Search = () => {
       let result = await searchYoutube(KEY, options);
       setvideos(result.items);
     } catch (e) {
-      if (e.error.code === 403) {
+      if (e.code === 403) {
         alert("you exceeded your search try tomorrow ");
       }
     }

@@ -8,11 +8,11 @@ const router = new express.Router();
 router.post("/users", async (req, res) => {
   try {
     const user = new User(req.body);
-    console.log(user)
+    console.log(user);
     await user.save();
     sendWelcomeMail(user.email, user.fname);
     const token = await user.generateAuthToken();
-    console.log(token)
+    console.log(token);
     res.status(201).send({ user, token });
   } catch (e) {
     res.status(400).send(e);
@@ -51,8 +51,10 @@ router.get("/users/me", auth, async (req, res) => {
 
 router.patch("/users/me", auth, async (req, res) => {
   const valid = ["fname", "lname", "password"];
-  const update = Object.keys(req.body);console.log("req.user")
-  const isValid = update.every((key) => valid.includes(key));console.log("55")
+  const update = Object.keys(req.body);
+  console.log("req.user");
+  const isValid = update.every((key) => valid.includes(key));
+  console.log("55");
   if (!isValid) {
     res.status(404).send({ error: "invalid update" });
   }
@@ -60,9 +62,9 @@ router.patch("/users/me", auth, async (req, res) => {
     update.forEach((key) => {
       req.user[key] = req.body[key];
     });
-    console.log(req.user)
-   await req.user.save();
-    console.log(req.user)
+    console.log(req.user);
+    await req.user.save();
+    console.log(req.user);
     res.send(req.user);
   } catch (error) {
     res.status(404).send(error);

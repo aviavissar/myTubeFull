@@ -36,7 +36,8 @@ const VideoList = ({
                   <ul>
                     {cat.videos.map((vid, indx) => {
                       return (
-                        <Video key={vid.snippet.title+indx}
+                        <Video
+                          key={vid.snippet.title + indx}
                           {...{
                             vid,
                             cat,
@@ -99,4 +100,3 @@ const H = styled.h2`
     font-size: 16px;
   }
 `;
-
